@@ -11,6 +11,7 @@ Well, the obvious solution as a good software engineer you would give is to buil
 </body>
 
 <h3> What it does till now? </h3>
+
 <body>
 1) After first round of survey we can upload an excel file with all the required a data and the application stores and maintain them all in mutiple MySQL tables.
 2) You can call one API to retrive a person details by using any of the identity number (i.e aadhar id, voter id or pan id)
