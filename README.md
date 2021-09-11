@@ -1,8 +1,9 @@
 <h1>Vaccination Tracker</h1>
-Problem:
+<h3> Problem: </h3>
+<body>
 Suppose your local govt wants to track and maintain how many people in your area got vaccinated (btw "COVID vaccination") and how many left. They also wants to get the staus 
 of family and area wise report. Now your area head (could be a BDO) calls you as you are a well known software engineer in the area for solution.
-
+</body>
 Solution:
 Well, the obvious solution as a good software engineer you would give is to build a software (vaccination-tracker) to do all the above tasks.
 
