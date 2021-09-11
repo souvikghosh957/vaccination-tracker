@@ -17,5 +17,5 @@ Well, the obvious solution as a good software engineer you would give is to buil
 <div>2) You can call one API to retrive a person details by using any of the identity number (i.e aadhar id, voter id or pan id)</div>
 <div>3) Once anyone gets vaccinated one API can update his/her vaccination count </div>
 <div> 4) One cool thing it does, once you update any person's vaccination details the family and area wise details also gets updated asynchronously. Thanks to spring @Async.
-/div>
+</div>
 </body>
