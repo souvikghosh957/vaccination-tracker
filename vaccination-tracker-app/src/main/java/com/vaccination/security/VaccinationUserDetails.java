@@ -54,7 +54,7 @@ public class VaccinationUserDetails implements UserDetails {
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return false;
+		return true;
 	}
 
 	@Override
