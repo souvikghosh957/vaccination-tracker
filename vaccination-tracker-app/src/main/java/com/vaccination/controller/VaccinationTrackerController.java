@@ -28,12 +28,17 @@ import com.vaccination.service.VaccinationTrackerService;
 @RestController
 @RequestMapping(value = "/vaccination")
 public class VaccinationTrackerController {
-	
+
 	@Value("${test.message}")
 	private String messageProp;
 
 	@Autowired
 	private VaccinationTrackerService vaccinationService;
+
+	@GetMapping("/home")
+	public String home() {
+		return "<h1> Welcome To Vaccination Tracker </h1>";
+	}
 
 	@PostMapping("/uploadRecords")
 	public ResponseEntity<ResponseMessage> loadRecords(@RequestParam(name = "file") MultipartFile file) {
@@ -51,25 +56,24 @@ public class VaccinationTrackerController {
 		message = "Please upload an excel file!";
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
 	}
-	
+
 	@PostMapping("/updateVaccination")
 	public ResponseEntity<ResponseMessage> updateVaccination(@RequestBody List<VaccinationRequest> vaccinationRequest) {
 		String message = "";
-		if(!vaccinationRequest.isEmpty()) {
+		if (!vaccinationRequest.isEmpty()) {
 			try {
 				List<Integer> ids = vaccinationService.updateRecords(vaccinationRequest);
 				message = "Upated Ids: " + ids;
-				return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));	
-			} catch(Exception e) {
+				return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+			} catch (Exception e) {
 				message = "Could not update the records!";
 				return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
-			}		
+			}
 		}
 		message = "Please provide non empty requests!";
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
 	}
-	
-	
+
 	@GetMapping("/getPersonVaccinationDetails")
 	public ResponseEntity<PersonDetailsResponse> getIdentityDetails(
 			@RequestParam(name = "adharId", required = false) String adharId,
@@ -81,7 +85,7 @@ public class VaccinationTrackerController {
 			if ((adharId != null && !adharId.isEmpty()) || (voterId != null && !voterId.isEmpty())
 					|| (panId != null && !panId.isEmpty())) {
 				PersonDetails personDetails = vaccinationService.getPersonDetails(adharId, voterId, panId);
-				//message = "Success!";
+				// message = "Success!";
 				message = messageProp;
 				personDetailsResponse = new PersonDetailsResponse(personDetails, new ResponseMessage(message));
 				return ResponseEntity.status(HttpStatus.OK).body(personDetailsResponse);
