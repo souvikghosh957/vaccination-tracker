@@ -160,4 +160,12 @@ public class VaccinationTrackerService {
 		return personDetails;
 	}
 
+	public Area getAreaDetails(String pincode) {
+		return areaRepository.findByPinCode(Integer.parseInt(pincode));
+	}
+
+	public Family getFamilyDetails(String familyId) {
+		return familyRepository.findByFamilyId(familyId);
+	}
+
 }

@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,10 +20,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vaccination.helper.ExcelHelper;
 import com.vaccination.message.ResponseMessage;
+import com.vaccination.models.Area;
+import com.vaccination.models.AreaDetails;
+import com.vaccination.models.Family;
+import com.vaccination.models.FamilyDetails;
 import com.vaccination.models.PersonDetails;
 import com.vaccination.models.PersonDetailsResponse;
 import com.vaccination.models.VaccinationRequest;
 import com.vaccination.service.VaccinationTrackerService;
+import com.vaccination.util.VaccinationUtil;
 
 @CrossOrigin("http://localhost:8081")
 @RefreshScope
@@ -57,7 +64,7 @@ public class VaccinationTrackerController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
 	}
 
-	@PostMapping("/updateVaccination")
+	@PutMapping("/updateVaccination")
 	public ResponseEntity<ResponseMessage> updateVaccination(@RequestBody List<VaccinationRequest> vaccinationRequest) {
 		String message = "";
 		if (!vaccinationRequest.isEmpty()) {
@@ -96,6 +103,48 @@ public class VaccinationTrackerController {
 			}
 		} catch (Exception e) {
 			message = "Could not create the records!. Please contact support.";
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(null);
+		}
+	}
+
+	@GetMapping("/getAreaDetails/{pincode}")
+	public ResponseEntity<AreaDetails> getAreaDetails(@PathVariable(name = "pincode") String pincode) {
+		String message = "";
+		AreaDetails areaDetails = null;
+		try {
+			if (pincode != null && !pincode.isEmpty() && VaccinationUtil.isInteger(pincode)) {
+				Area area = vaccinationService.getAreaDetails(pincode);
+				message = messageProp;
+				areaDetails = new AreaDetails(area, new ResponseMessage(message));
+				return ResponseEntity.status(HttpStatus.OK).body(areaDetails);
+			} else {
+				message = "Please enter valid pincode";
+				areaDetails = new AreaDetails(null, new ResponseMessage(message));
+				return ResponseEntity.status(HttpStatus.OK).body(areaDetails);
+			}
+		} catch (Exception e) {
+			message = "Could not retrive area details";
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(null);
+		}
+	}
+
+	@GetMapping("/getFamilyDetails/{familyId}")
+	public ResponseEntity<FamilyDetails> getFamilyDetails(@PathVariable(name = "familyId") String familyId) {
+		String message = "";
+		FamilyDetails familyDetails = null;
+		try {
+			if (familyId != null && !familyId.isEmpty()) {
+				Family family = vaccinationService.getFamilyDetails(familyId);
+				message = messageProp;
+				familyDetails = new FamilyDetails(family, new ResponseMessage(message));
+				return ResponseEntity.status(HttpStatus.OK).body(familyDetails);
+			} else {
+				message = "Please enter valid familyId";
+				familyDetails = new FamilyDetails(null, new ResponseMessage(message));
+				return ResponseEntity.status(HttpStatus.OK).body(familyDetails);
+			}
+		} catch (Exception e) {
+			message = "Could not retrive family details";
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(null);
 		}
 	}

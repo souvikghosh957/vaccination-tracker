@@ -7,5 +7,7 @@ import com.vaccination.models.Area;
 
 @Repository
 public interface AreaRepository extends JpaRepository<Area, Integer> {
+	
+	public Area findByPinCode(Integer pinCode);
 
 }
