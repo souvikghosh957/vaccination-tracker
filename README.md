@@ -19,3 +19,7 @@ Well, the obvious solution as a good software engineer you would give is to buil
 <div> 4) One cool thing it does, once you update any person's vaccination details the family and area wise details also gets updated asynchronously. Thanks to spring @Async.
 </div>
 </body>
+
+Architecture:
+
+![Alt text/blob/master/vaccination-tracker-architecture.png?raw=true "Vaccination Tracker Architecture")
