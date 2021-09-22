@@ -20,6 +20,6 @@ Well, the obvious solution as a good software engineer you would give is to buil
 </div>
 </body>
 
-Architecture:
+<h3> Architecture: </h3>
 
-![Alt text](/vaccination-tracker-architecture.png?raw=true "Vaccination Tracker Architecture")
+![Alt text](/vat-image1.png?raw=true "Vaccination Tracker Architecture")
