@@ -22,4 +22,4 @@ Well, the obvious solution as a good software engineer you would give is to buil
 
 Architecture:
 
-![Alt text/blob/master/vaccination-tracker-architecture.png?raw=true "Vaccination Tracker Architecture")
+![Alt text](/vaccination-tracker-architecture.png?raw=true "Vaccination Tracker Architecture")
