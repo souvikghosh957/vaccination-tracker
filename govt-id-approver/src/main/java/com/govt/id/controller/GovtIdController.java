@@ -38,7 +38,6 @@ public class GovtIdController {
 				message = "Could not create the records!. Please contact support.";
 				return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
 			}
-		//return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
 	}
 	
 	
@@ -65,6 +64,5 @@ public class GovtIdController {
 				message = "Could not create the records!. Please contact support.";
 				return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(null);
 			}
-		//return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
 	}
 }
