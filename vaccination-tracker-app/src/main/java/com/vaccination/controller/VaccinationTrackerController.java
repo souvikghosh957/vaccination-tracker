@@ -42,11 +42,23 @@ public class VaccinationTrackerController {
 	@Autowired
 	private VaccinationTrackerService vaccinationService;
 
+	/**
+	 * Default home page.
+	 */
 	@GetMapping("/home")
 	public String home() {
 		return "<h1> Welcome To Vaccination Tracker </h1>";
 	}
 
+	/**
+	 * Using this API an administrative user can upload the excel file containing
+	 * the survey records.
+	 * 
+	 * @param template excel file containing the local citizen's vaccination
+	 *                 details.
+	 * @return Upload status
+	 * @author Souvik Ghosh
+	 */
 	@PostMapping("/uploadRecords")
 	public ResponseEntity<ResponseMessage> loadRecords(@RequestParam(name = "file") MultipartFile file) {
 		String message = "";
@@ -64,6 +76,15 @@ public class VaccinationTrackerController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
 	}
 
+	/**
+	 * This rest API takes a person's any of the government ID and update the
+	 * person's vaccination details. It also re-calculates family and area wise
+	 * status.
+	 * 
+	 * @param VaccinationRequest holds a details of the newly vaccinated person.
+	 * @return Response entity with message
+	 * @author Souvik Ghosh
+	 */
 	@PutMapping("/updateVaccination")
 	public ResponseEntity<ResponseMessage> updateVaccination(@RequestBody List<VaccinationRequest> vaccinationRequest) {
 		String message = "";
@@ -81,6 +102,14 @@ public class VaccinationTrackerController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
 	}
 
+	/**
+	 * This API takes in any or all of adharId, voterId or panId of a person's in
+	 * request parameter and returns back the vaccination details.
+	 * 
+	 * @param adharId, voterId, panId
+	 * @return PersonDetailsResponse
+	 * @author Souvik Ghosh
+	 */
 	@GetMapping("/getPersonVaccinationDetails")
 	public ResponseEntity<PersonDetailsResponse> getIdentityDetails(
 			@RequestParam(name = "adharId", required = false) String adharId,
@@ -107,6 +136,14 @@ public class VaccinationTrackerController {
 		}
 	}
 
+	/**
+	 * The getAreaDetails API takes in a PIN code as path variable and returns back
+	 * the area's vaccination details.
+	 * 
+	 * @param pincode
+	 * @return AreaDetails
+	 * @author Souvik Ghosh
+	 */
 	@GetMapping("/getAreaDetails/{pincode}")
 	public ResponseEntity<AreaDetails> getAreaDetails(@PathVariable(name = "pincode") String pincode) {
 		String message = "";
@@ -128,6 +165,14 @@ public class VaccinationTrackerController {
 		}
 	}
 
+	/**
+	 * The getAreaDetails API takes in a family Id code as path variable and returns
+	 * back the Family's vaccination details.
+	 * 
+	 * @param familyId
+	 * @return FamilyDetails
+	 * @author Souvik Ghosh
+	 */
 	@GetMapping("/getFamilyDetails/{familyId}")
 	public ResponseEntity<FamilyDetails> getFamilyDetails(@PathVariable(name = "familyId") String familyId) {
 		String message = "";
