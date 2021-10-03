@@ -18,9 +18,8 @@ Well, the obvious solution as a good software engineer you would give is to buil
 <div>3) Once anyone gets vaccinated one API can update his/her vaccination count </div>
 <div> 4) One cool thing it does, once you update any person's vaccination details the family and area wise details also gets updated asynchronously. Thanks to spring @Async. </div>
 <div> 5) We can retrive an area's or family's vaccination details too. </div>
-<div> 6) Upload and update records can only be done by an administrative user. Fetching a person, family or area details can be be done by both administrative and
-  or general users </div>
-<div> 7) The individual service also can be containerized.
+<div> 6) Upload and update records can only be done by an administrative user. Fetching a person, family or area details can be be done by both administrative and general users </div>
+<div> 7) The individual services also can be containerized.
   
  
   
