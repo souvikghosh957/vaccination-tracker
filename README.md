@@ -35,4 +35,6 @@ Well, the obvious solution as a good software engineer you would give is to buil
 
 ![Alt text](/DB_ER_Diagram.png?raw=true "Database Schema")
 
-[DB Script](https://pages.github.com/).
+<div>
+<body> Find the [DB Script](https://github.com/souvikghosh957/vaccination-tracker/wiki) in the wiki pagen </body>
+  </div>
