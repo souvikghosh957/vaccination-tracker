@@ -35,5 +35,7 @@ Well, the obvious solution as a good software engineer you would give is to buil
 
 ![Alt text](/DB_ER_Diagram.png?raw=true "Database Schema")
 
-[DB script in wiki page](https://github.com/souvikghosh957/vaccination-tracker/wiki)
+<h4>
+[DB Script](https://github.com/souvikghosh957/vaccination-tracker/wiki)
+  </h4>
  
