@@ -34,3 +34,5 @@ Well, the obvious solution as a good software engineer you would give is to buil
 <h3> DB Details: </h3>
 
 ![Alt text](/DB_ER_Diagram.png?raw=true "Database Schema")
+
+[DB Script](https://pages.github.com/).
