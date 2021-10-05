@@ -31,6 +31,6 @@ Well, the obvious solution as a good software engineer you would give is to buil
 
 ![Alt text](/vat-image1.png?raw=true "Vaccination Tracker Architecture")
 
-<h3> Database Schema: </h3>
+<h3> DB Details: </h3>
 
 ![Alt text](/DB_ER_Diagram.png?raw=true "Database Schema")
