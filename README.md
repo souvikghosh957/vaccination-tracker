@@ -20,7 +20,7 @@ Well, the obvious solution as a good software engineer you would give is to buil
 <div> 5) We can retrive an area's or family's vaccination details too. </div>
 <div> 6) Upload and update records can only be done by an administrative user. Fetching a person, family or area details can be be done by both administrative and general users </div>
 <div> 7) The individual services also can be containerized using docker. </div>
-<div> 8) We can download the survey template for the first round of survey (API: http://localhost:8081/vaccination/downloadTemplate). </div>
+<div> 8) Download the survey template. </div>
 </body>
 
 <h3> Architecture: </h3>
