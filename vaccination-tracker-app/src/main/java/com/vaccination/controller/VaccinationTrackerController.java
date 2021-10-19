@@ -1,12 +1,22 @@
 package com.vaccination.controller;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +51,12 @@ public class VaccinationTrackerController {
 
 	@Autowired
 	private VaccinationTrackerService vaccinationService;
+
+	private static String TMP_DIR = System.getProperty("java.io.tmpdir") + "/";
+
+	private static String FILE_URL = "https://github.com/souvikghosh957/vaccination-tracker/raw/master/VaccinationServeyTemplate.xlsx";
+
+	private static String FILE_PATH = TMP_DIR + "VaccinationServeyTemplate.xlsx";
 
 	/**
 	 * Default home page.
@@ -194,4 +210,34 @@ public class VaccinationTrackerController {
 		}
 	}
 
+	/**
+	 * This API enable us to download the survey template, which will be uploaded by
+	 * the administrative users to track the vaccination details.
+	 * 
+	 * @param httpServletResponse
+	 * @author Souvik Ghosh
+	 */
+	@GetMapping("/downloadTemplate")
+	public void downloadTemplate(HttpServletResponse httpServletResponse) {
+		File file = new File(FILE_PATH);
+		if (!file.exists()) {
+			try {
+				FileUtils.copyURLToFile(new URL(FILE_URL), new File(FILE_PATH), 10000, 10000);
+				file = new File(FILE_PATH);
+			} catch (IOException io) {
+				io.printStackTrace();
+			}
+		}
+		httpServletResponse.setContentType("application/octet-stream");
+		httpServletResponse.setHeader("Content-Disposition",
+				String.format("inline; filename = \"" + file.getName() + "\""));
+		httpServletResponse.setContentLength((int) file.length());
+		try {
+			InputStream is = new BufferedInputStream(new FileInputStream(file));
+			FileCopyUtils.copy(is, httpServletResponse.getOutputStream());
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
