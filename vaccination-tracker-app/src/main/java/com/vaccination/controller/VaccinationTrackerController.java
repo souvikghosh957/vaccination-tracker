@@ -56,7 +56,7 @@ public class VaccinationTrackerController {
 
 	private static String FILE_URL = "https://github.com/souvikghosh957/vaccination-tracker/raw/master/VaccinationServeyTemplate.xlsx";
 
-	private static String FILE_PATH = TMP_DIR + "VaccinationServeyTemplate.xlsx";
+	private static String FILE_PATH = TMP_DIR + "VaccinationSurveyTemplate.xlsx";
 
 	/**
 	 * Default home page.
